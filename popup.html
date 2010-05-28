@@ -41,6 +41,7 @@ a:link, #grabber {
 
 a:visited {
 	color:#b443f7;
+	text-decoration:line-through;
 }
 
 a:active, a:focus {
@@ -98,7 +99,7 @@ p {
 
 <script type="text/javascript">
 	document.getElementById("grabber").addEventListener("click",fetchcodes,false);
-	
+
 	function fetchcodes() {
 		chrome.tabs.executeScript(null, {file: "content_script.js"});
 		//chrome.tabs.insertCSS(null, {file: "insertedcss.css"});
@@ -114,5 +115,8 @@ p {
 		}
 	);
 </script>
+
+<!-- Created: 2010 May 24 -->
+<!-- Revised: 2010 May 28 -->
 </body>
 </html>
