@@ -2,7 +2,9 @@
 	"name": "iTunes Promo Code Fetcher",
 	"version": "1.0",
 	"description": "Detect iTunes app promo codes on Twitter pages and create direct links to redeem in iTunes.",
-	"default_locale": "en",
+	"icons": {"48": "icon48.png",
+		"128": "icon128.png"
+	},
 	"permissions": [
 		"tabs", "http://*/*", "https://*/*"
 		],
