@@ -6,7 +6,6 @@
 	"permissions": [
 		"tabs", "http://*/*", "https://*/*"
 		],
-	"update_url": "http://path/to/updateInfo.xml",
 	"browser_action": {
 		"default_title": "Detect iTunes app promo codes on Twitter pages and create direct links to redeem in iTunes.",
 		"default_icon": "icon.png",
