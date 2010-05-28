@@ -1,0 +1,66 @@
+<style type="text/css">
+* {
+	margin:0;
+	padding:0;
+}
+
+#container {
+	overflow:hidden;
+	padding:1em;
+	width:200px;
+	background-color:#eee;
+	border:1px solid #ccc;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	font-family:helvetica,sans-serif;
+	font-size:10pt;
+}
+
+h1 {
+	font-size:1.2em;
+	font-weight:bold;
+	letter-spacing:-1px;
+}
+
+a {
+	cursor:pointer;
+	text-decoration:underline;
+}
+
+a:hover {
+	text-decoration:none;
+}
+
+ul {
+	margin-top:0.5em;
+	margin-left:0.8em;
+	padding-left:0.5em;
+}
+
+li {
+	list-style:square;
+}
+</style>
+
+<div id="container">
+	<h1>Codes</h1>
+	<p><a onclick="click()">Grab Promo Codes</a></p>
+	<ul id="codesgroup"></ul>
+</div>
+
+<script type="text/javascript">
+	function click() {
+		chrome.tabs.executeScript(null, {file: "content_script.js"});
+		//chrome.tabs.insertCSS(null, {file: "insertedcss.css"});
+		//window.close();
+	}
+
+	chrome.extension.onRequest.addListener(
+	      function(request, sender, sendResponse) {
+			if (request.message) {
+			    document.getElementById("codesgroup").innerHTML = request.message;
+			}
+	          sendResponse({});
+	      }
+	  );
+</script>
