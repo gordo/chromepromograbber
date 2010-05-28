@@ -1,12 +1,15 @@
 {
-  "name": "A browser action with a popup that detects iTunes app promo codes on Twitter pages.",
-  "version": "1.0",
-  "permissions": [
-    "tabs", "http://*/*", "https://*/*"
-  ],
-  "browser_action": {
-      "default_title": "Detect iTunes app promo codes on Twitter pages.",
-      "default_icon": "icon.png",
-      "popup": "popup.html"
-  }
+	"name": "iTunes Promo Code Fetcher",
+	"version": "1.0",
+	"description": "Detect iTunes app promo codes on Twitter pages and create direct links to redeem in iTunes.",
+	"default_locale": "en",
+	"permissions": [
+		"tabs", "http://*/*", "https://*/*"
+		],
+	"update_url": "http://path/to/updateInfo.xml",
+	"browser_action": {
+		"default_title": "Detect iTunes app promo codes on Twitter pages and create direct links to redeem in iTunes.",
+		"default_icon": "icon.png",
+		"popup": "popup.html"
+	}
 }

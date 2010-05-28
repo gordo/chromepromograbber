@@ -1,7 +1,14 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="author" content="Gordon Mei" />
+<title>iTunes Promo Code Fetcher</title>
 <style type="text/css">
 * {
 	margin:0;
 	padding:0;
+	text-shadow:#fff 0 1px 0;
 }
 
 #container {
@@ -17,6 +24,7 @@
 }
 
 h1 {
+	margin-bottom:0.3em;
 	font-size:1.2em;
 	font-weight:bold;
 	letter-spacing:-1px;
@@ -27,7 +35,23 @@ a {
 	text-decoration:underline;
 }
 
-a:hover {
+a:link, #grabber {
+	color:#448fff;
+}
+
+a:visited {
+	color:#b443f7;
+}
+
+a:active, a:focus {
+	color:#416;
+	text-shadow:#b443f7 0 0 2px;
+	outline:0;
+}
+
+a:hover, #grabber:hover {
+	color:#416;
+	text-shadow:#b443f7 0 0 2px;
 	text-decoration:none;
 }
 
@@ -40,27 +64,55 @@ ul {
 li {
 	list-style:square;
 }
-</style>
 
+p {
+	margin-top:0.3em;
+	font-style:italic;
+	color:#777;
+}
+
+#placeholder {
+	margin-left:-1.2em;
+	padding-left:0;
+	list-style:none;
+}
+
+#note {
+	margin-top:0.3em;
+	margin-left:-1.2em;
+	padding-left:0;
+	list-style:none;
+	font-style:italic;
+	color:#777;
+}
+</style>
+</head>
+
+<body>
 <div id="container">
-	<h1>Codes</h1>
-	<p><a onclick="click()">Grab Promo Codes</a></p>
+	<h1>iTunes Promo Code Fetcher</h1>
+	<a id="grabber">Grab Promo Codes</a>
+	<p>Visit a Twitter account page, and click the link above to grab all promo codes on the page.</p>
 	<ul id="codesgroup"></ul>
 </div>
 
 <script type="text/javascript">
-	function click() {
+	document.getElementById("grabber").addEventListener("click",fetchcodes,false);
+	
+	function fetchcodes() {
 		chrome.tabs.executeScript(null, {file: "content_script.js"});
 		//chrome.tabs.insertCSS(null, {file: "insertedcss.css"});
 		//window.close();
 	}
 
 	chrome.extension.onRequest.addListener(
-	      function(request, sender, sendResponse) {
+		function(request, sender, sendResponse) {
 			if (request.message) {
-			    document.getElementById("codesgroup").innerHTML = request.message;
+				document.getElementById("codesgroup").innerHTML = request.message;
 			}
-	          sendResponse({});
-	      }
-	  );
+			sendResponse({});
+		}
+	);
 </script>
+</body>
+</html>
