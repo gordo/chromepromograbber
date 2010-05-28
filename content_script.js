@@ -15,15 +15,15 @@ else {
 	//var allcodes = allentrycontent.match(/(^|\s+)[A-Za-z0-9]{12}/g);
 	var allcodes = allentrycontent.match(/[A-Z0-9]{12}/g);
 
-	for (var j=0; j<allcodes.length; j++) {
-		codeslist += '<li><a href="https://phobos.apple.com/WebObjects/MZFinance.woa/wa/freeProductCodeWizard?code=' + allcodes[j] + '" target="blank">' + allcodes[j] + '</a></li>';
+	if (allcodes != null) {		
+		for (var j=0; j<allcodes.length; j++) {
+			codeslist += '<li><a href="https://phobos.apple.com/WebObjects/MZFinance.woa/wa/freeProductCodeWizard?code=' + allcodes[j] + '" target="blank">' + allcodes[j] + '</a></li>';
+		}
+		codeslist += '<li id="note">Click any of these to directly redeem in iTunes.</li>';
 	}
-	codeslist += '<li id="note">Click any of these to directly redeem in iTunes.</li>';
-
-	if (allcodes.length == 0) {
+	else {
 		codeslist = '<li id="placeholder">No promo codes found.</li>';
 	}
-
 }
 
 chrome.extension.sendRequest({message: codeslist}, function(response) {});
