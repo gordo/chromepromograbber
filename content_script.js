@@ -1,21 +1,25 @@
-if (document.getElementsByClassName("entry-content").length == 0) {
+//var entrycontent = document.getElementsByClassName("stream-items")[0].getElementsByClassName("tweet-text");
+
+if (window.location.host != "twitter.com") {
+	codeslist = '<li id="placeholder">This is not Twitter.</li>';
+}
+// else if (entrycontent.length == 0) {
+else if (document.getElementsByClassName("stream-items")[0].getElementsByClassName("tweet-text").length == 0) {
 	codeslist = '<li id="placeholder">No promo codes found.</li>';
 }
 else {
+	var entrycontent = document.getElementsByClassName("stream-items")[0].getElementsByClassName("tweet-text");
+
+	var allentrycontent = "";
+	var codeslist = "";
 	
-	var allentrycontent = "";	
-
-	var entrycontent = document.getElementsByClassName("entry-content");
-
 	for (var i=0; i<entrycontent.length; i++) {
 		allentrycontent += entrycontent[i].innerHTML;
 	}
-	var codeslist = "";
 
-	//var allcodes = allentrycontent.match(/(^|\s+)[A-Za-z0-9]{12}/g);
-	var allcodes = allentrycontent.match(/[A-Z0-9]{12}/g);
+	var allcodes = allentrycontent.match(/(^|\s+)[A-Z0-9]{12}/g);
 
-	if (allcodes != null) {		
+	if (allcodes != null) {
 		for (var j=0; j<allcodes.length; j++) {
 			codeslist += '<li><a href="https://phobos.apple.com/WebObjects/MZFinance.woa/wa/freeProductCodeWizard?code=' + allcodes[j] + '" target="blank">' + allcodes[j] + '</a></li>';
 		}
@@ -29,3 +33,5 @@ else {
 chrome.extension.sendRequest({message: codeslist}, function(response) {});
 
 /* Created: 2010 May 24 */
+/* Revised: 2010 May 28 */
+/* Revised: 2010 Dec 24 for new Twitter site. this is still a very fragile technique. look into accessing tweets in JSON format */
